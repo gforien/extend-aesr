@@ -1,6 +1,6 @@
 {
   "version": "2.3.1",
-  "name": "AWS Extend Switch Roles",
+  "name": "AWS Extend Switch Roles (fork)",
   "description": "Extend your AWS IAM switching roles. You can set the configuration like aws config format",
   "short_name": "Extend SwitchRole",
   "permissions": ["activeTab", "storage"],
@@ -9,7 +9,7 @@
     "128": "icons/Icon_128x128.png"
   },
   "browser_action": {
-    "default_title": "AWS Extend Switch Roles",
+    "default_title": "AWS Extend Switch Roles (fork)",
     "default_icon": "icons/Icon_38x38.png",
     "default_popup": "popup.html"
   },
@@ -38,7 +38,7 @@
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {
-        "default": "Ctrl+Shift+Comma"
+        "default": "Ctrl+Shift+P"
       }
     }
   },
