@@ -1,8 +1,8 @@
-# Quick open AWS
-### Forked from [tilfinltd/aws-extend-switch-roles](https://github.com/tilfinltd/aws-extend-switch-roles)
+# Extend AESR
+### Fork of [tilfinltd/aws-extend-switch-roles](https://github.com/tilfinltd/aws-extend-switch-roles)
 
 ### List of modifications
-- [x] Edit name
+- [x] Set Ctrl-Shift-P as keybinding
 - [x] Build and load extension
 - [x] Open an account
 - [x] Switch accounts
@@ -11,6 +11,13 @@
 - [x] Remove the update notice
 - [x] Add debug logs
 - [x] Add an checkbox to hide the sidebar
+- [ ] Open without needing an active tab
+- [ ] Open service menu on key pressed
+- [ ] Add icons for the list of services
+- [ ] Add filter support for the list of services
+- [ ] Add arrow keys support
+- [ ] Align account number to the right
+- [ ] Make account numbers selectable
 
 ### How does AESR work ?
 - popup.js
@@ -39,8 +46,3 @@
   - anchor `main` (div)
     - anchor `roleFilter` (input)
     - anchor `roleList` (ul)
-
-### For later:
-- [ ] Remove golden key configuration, redirect to AESR
-- [ ] Allow auto-assume last role
-- [ ] Add icons for the list of services
