@@ -133,9 +133,11 @@ function loadFormList(curURL, userInfo, tabId) {
 
 function renderRoleList(profiles, tabId, curURL, options) {
   const { url, region, isLocal } = getCurrentUrlandRegion(curURL)
-  const listItemOnSelect = function(data) {
+  const listItemOnSelect = function(event, data) {
     if (options.signinEndpointInHere && isLocal) data.actionSubdomain = region;
-    switchServiceAndRole(tabId, data);
+
+    // open the second menu only on Shift+Click
+    event.shiftKey? switchServiceAndRole(tabId, data): sendSwitchRole(tabId, data);
   }
   const list = document.getElementById('roleList');
   profiles.forEach(item => {
