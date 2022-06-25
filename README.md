@@ -12,12 +12,13 @@
 - [x] Add debug logs
 - [x] Add an checkbox to hide the sidebar
 - [ ] Open without needing an active tab
-- [ ] Open service menu on key pressed
+- [x] Open service menu on key pressed
 - [ ] Add icons for the list of services
 - [ ] Add filter support for the list of services
 - [ ] Add arrow keys support
 - [ ] Align account number to the right
 - [ ] Make account numbers selectable
+- [ ] Add a return arrow
 
 ### How does AESR work ?
 - popup.js
