@@ -87,7 +87,7 @@ function main() {
        || url.host.endsWith('.amazonaws-us-gov.com')
        || url.host.endsWith('.amazonaws.cn')) {
         executeAction(tab.id, 'loadInfo', {}).then(userInfo => {
-          console.log(`<- returned ${userInfo}`);
+          console.log('executeAction(loadInfo) returned userInfo= ', userInfo);
 
           if (userInfo) {
             loadFormList(url, userInfo, tab.id);
@@ -105,6 +105,10 @@ function main() {
         p.textContent = "You'll see the role list here when the current tab is AWS Management Console page.";
         p.style.color = '#666';
         noMain.style.display = 'block';
+
+        // automatically open AWS Console with default region
+        let consoleURL = "https://us-east-1.console.aws.amazon.com/console/home?region=us-east-1";
+        chrome.tabs.create({ url: consoleURL });
       }
     })
 }
