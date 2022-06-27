@@ -11,15 +11,17 @@
 - [x] Remove the update notice
 - [x] Add debug logs
 - [x] Add an checkbox to hide the sidebar
-- [ ] Open without needing an active tab
+- [ ] On opening, go back to last tab with URL like `aws.amazon.com`
+- [ ] On profile change, close all AWS tabs
 - [x] Open service menu on key pressed
 - [x] Handle simultaneous service switch and role switch
 - [ ] Add icons for the list of services
 - [ ] Add filter support for the list of services
-- [ ] Add arrow keys support
+- [x] Add arrow keys support
 - [ ] Align account number to the right
 - [ ] Make account numbers selectable
 - [ ] Add a Console entry
+- [x] On message `Failed to fetch user info`, reload the tab
 
 ### How does AESR work ?
 - popup.js
