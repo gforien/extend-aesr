@@ -50,3 +50,5 @@
   - anchor `main` (div)
     - anchor `roleFilter` (input)
     - anchor `roleList` (ul)
+
+[Migrating to Manifest V3](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-migration/)

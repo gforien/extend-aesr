@@ -8,7 +8,7 @@
     "48": "icons/Icon_48x48.png",
     "128": "icons/Icon_128x128.png"
   },
-  "browser_action": {
+  "action": {
     "default_title": "AWS Extend Switch Roles (fork)",
     "default_icon": "icons/Icon_38x38.png",
     "default_popup": "popup.html"
@@ -19,7 +19,8 @@
         "https://*.console.aws.amazon.com/*",
         "https://phd.aws.amazon.com/*",
         "https://*.console.amazonaws-us-gov.com/*",
-        "https://*.console.amazonaws.cn/*"
+        "https://*.console.amazonaws.cn/*",
+        "<all_urls>"
       ],
       "all_frames": true,
       "js": [
@@ -32,9 +33,11 @@
     "page": "options.html",
     "open_in_tab": true
   },
-  "web_accessible_resources": [
-    "js/attach_target.js"
-  ],
+  "web_accessible_resources": [{
+    "resources": ["js/attach_target.js"],
+    "matches": ["<all_urls>"],
+    "extension_ids": []
+  }],
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {
@@ -42,5 +45,5 @@
       }
     }
   },
-  "manifest_version": 2
+  "manifest_version": 3
 }

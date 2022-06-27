@@ -93,10 +93,10 @@ function main() {
             loadFormList(url, userInfo, tab.id);
             document.getElementById('main').style.display = 'block';
           } else {
-            chrome.tabs.reload(tab.id);
-            setTimeout(() => {
-              window.location.reload()
-            }, 1000);
+            // chrome.tabs.reload(tab.id);
+            // setTimeout(() => {
+            //   window.location.reload()
+            // }, 1000);
           }
         })
       } else {
@@ -107,7 +107,7 @@ function main() {
 
         // automatically open AWS Console with default region
         let consoleURL = "https://us-east-1.console.aws.amazon.com/console/home?region=us-east-1";
-        chrome.tabs.create({ url: consoleURL });
+        // chrome.tabs.create({ url: consoleURL });
       }
     })
 }
@@ -211,11 +211,15 @@ function setupRoleFilter() {
 function sendSwitchRole(tabId, data) {
   chrome.tabs.query({ currentWindow: true }, function (tabs) {
     tabs = tabs.filter(t => t.url.includes('.aws.amazon.com') && t.id != tabId)
-    .forEach(t => {
-      console.debug("Closing tab ", t)
-      chrome.tabs.remove(t.id)
+    // .forEach(t => {
+    //   console.debug("Closing tab ", t)
+    //   chrome.tabs.remove(t.id)
+    // });
+    chrome.tabs.group({ tabIds: tabs.map(t => t.id)}, function (groupId) {
+      chrome.tabGroups.update(groupId, { title: "Detached AWS", color: "orange", collapsed: true});
+      chrome.tabGroups.move(groupId, {index: 0});
     });
-        
+
     executeAction(tabId, 'switch', data).then(() => {
       let swcnt = localStorage.getItem('switchCount') || 0;
       localStorage.setItem('switchCount', ++swcnt);

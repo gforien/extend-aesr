@@ -7,7 +7,7 @@ function updateKeyExpire(exp) {
   syncStorageRepo.set({ goldenKeyExpire: exp })
   .then(() => {
     localStorage.setItem('hasGoldenKey', exp ? exp : '');
-    chrome.browserAction.setIcon({ path: `icons/Icon_48x48${exp ? '_g' : ''}.png` });
+    chrome.action.setIcon({ path: `icons/Icon_48x48${exp ? '_g' : ''}.png` });
   })
 }
 
