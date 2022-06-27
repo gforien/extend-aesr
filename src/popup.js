@@ -170,33 +170,35 @@ function switchServiceAndRole(tabId, data) {
 
 function setupRoleFilter() {
   const roleFilter = document.getElementById('roleFilter');
+  const lis = Array.from(document.querySelectorAll('#roleList > li'));
+  lis.forEach(e => e.style.display = 'block');
 
-  let AWSR_firstAnchor = null;
-  roleFilter.onkeyup = function(e) {
+  let selectedIndex = 0;
+  roleFilter.onkeydown = function(e) {
+    let visibleLis = lis.filter(e => e.style.display == 'block');
+    console.debug('visibleLis = ', visibleLis);
     const words = this.value.toLowerCase().split(' ');
+    console.debug('e.key = ', e.key);
+
     if (e.key === 'Enter') {
-      if (AWSR_firstAnchor) {
-        AWSR_firstAnchor.click()
-      }
+        lis[selectedIndex].querySelector('a').click();
+    } else if (e.key === 'ArrowUp') {
+        selectedIndex = (selectedIndex-1 > 0)? selectedIndex-1: 0;
+        console.debug('selectedIndex = ', selectedIndex);
+    } else if (e.key === 'ArrowDown') {
+      selectedIndex = (selectedIndex+1 < visibleLis.length-1)? selectedIndex+1: visibleLis.length-1;
+      console.debug('selectedIndex = ', selectedIndex);
     } else {
-      const lis = Array.from(document.querySelectorAll('#roleList > li'));
-      let firstHitLi = null;
       lis.forEach(li => {
         const anchor = li.querySelector('a')
         const profileName = anchor.dataset.search;
         const hit = words.every(it => profileName.includes(it));
         li.style.display = hit ? 'block' : 'none';
-        li.style.background = null;
-        if (hit && firstHitLi === null) firstHitLi = li;
       });
-
-      if (firstHitLi) {
-        // firstHitLi.style.background = '#f0f9ff';
-        AWSR_firstAnchor = firstHitLi.querySelector('a');
-      } else {
-        AWSR_firstAnchor = null;
-      }
     }
+
+    lis.forEach(li => li.style.background = null);
+    visibleLis[selectedIndex].style.background = '#ccf8ff';  
   }
 
   roleFilter.focus()
