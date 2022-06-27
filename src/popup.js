@@ -159,13 +159,10 @@ function switchServiceAndRole(tabId, data) {
   serviceList = document.querySelectorAll('a[serviceName]');
   serviceList.forEach(element => {
     element.onclick = () => {
-      let oldURI = decodeURIComponent(data.redirecturi)
-      let newURI = oldURI.replace('console/', element.attributes["serviceName"].value+'/');
-      data.redirecturi = encodeURIComponent(newURI);
-
-      console.debug(`changed ${oldURI}\nto      ${newURI}`);
-      // console.debug(`oldURI= ${oldURI}`);
-      // console.debug(`replacing console/ with ${element.attributes["serviceName"].value}/`);
+      // edit redirectURI -> redirect to the selected service
+      let redirectURI = new URL(decodeURIComponent(data.redirecturi))
+      redirectURI.pathname = element.attributes["serviceName"].value
+      data.redirecturi = encodeURIComponent(redirectURI.toString());
       sendSwitchRole(tabId, data);
     }
   });
