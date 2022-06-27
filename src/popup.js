@@ -209,10 +209,18 @@ function setupRoleFilter() {
 }
 
 function sendSwitchRole(tabId, data) {
-  executeAction(tabId, 'switch', data).then(() => {
-    let swcnt = localStorage.getItem('switchCount') || 0;
-    localStorage.setItem('switchCount', ++swcnt);
-    window.close()
+  chrome.tabs.query({ currentWindow: true }, (tabs) => {
+    tabs = tabs.filter(t => t.url.includes('.aws.amazon.com') && t.id != tabId)
+    // TODO: use a Promise for this, after upgrading to MV3
+    tabs.forEach(t => {chrome.tabs.remove(t.id)});
+    // TODO: Allow grouping tabs instead of deleting them, after upgrading to MV3
+    // chrome.tabs.group({ tabIds: tabs.map(t => t.id)});
+
+    executeAction(tabId, 'switch', data).then(() => {
+      let swcnt = localStorage.getItem('switchCount') || 0;
+      localStorage.setItem('switchCount', ++swcnt);
+      window.close()
+    });
   });
 }
 
