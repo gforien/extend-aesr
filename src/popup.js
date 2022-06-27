@@ -209,10 +209,18 @@ function setupRoleFilter() {
 }
 
 function sendSwitchRole(tabId, data) {
-  executeAction(tabId, 'switch', data).then(() => {
-    let swcnt = localStorage.getItem('switchCount') || 0;
-    localStorage.setItem('switchCount', ++swcnt);
-    window.close()
+  chrome.tabs.query({ currentWindow: true }, function (tabs) {
+    tabs = tabs.filter(t => t.url.includes('.aws.amazon.com') && t.id != tabId)
+    .forEach(t => {
+      console.debug("Closing tab ", t)
+      chrome.tabs.remove(t.id)
+    });
+        
+    executeAction(tabId, 'switch', data).then(() => {
+      let swcnt = localStorage.getItem('switchCount') || 0;
+      localStorage.setItem('switchCount', ++swcnt);
+      window.close()
+    });
   });
 }
 
