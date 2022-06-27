@@ -93,11 +93,10 @@ function main() {
             loadFormList(url, userInfo, tab.id);
             document.getElementById('main').style.display = 'block';
           } else {
-            const noMain = document.getElementById('noMain');
-            const p = noMain.querySelector('p');
-            p.textContent = 'Failed to fetch user info from the AWS Management Console page';
-            p.style.color = '#d11';
-            noMain.style.display = 'block';
+            chrome.tabs.reload(tab.id);
+            setTimeout(() => {
+              window.location.reload()
+            }, 1000);
           }
         })
       } else {
