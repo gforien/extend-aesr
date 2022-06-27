@@ -140,7 +140,9 @@ function renderRoleList(profiles, tabId, curURL, options) {
     if (options.signinEndpointInHere && isLocal) data.actionSubdomain = region;
 
     // open the second menu only on Shift+Click
-    event.shiftKey? switchServiceAndRole(tabId, data): sendSwitchRole(tabId, data);
+    // for keyboard, Shift+Enter is already a keybinding that I could not override, hence I use ctrl+Enter
+    modifier = event.shiftKey || event.ctrlKey;
+    modifier? switchServiceAndRole(tabId, data): sendSwitchRole(tabId, data);
   }
   const list = document.getElementById('roleList');
   profiles.forEach(item => {
@@ -179,11 +181,14 @@ function setupRoleFilter() {
     const words = this.value.toLowerCase().split(' ');
     console.debug('e.key = ', e.key);
 
-    if (e.key === 'Enter') {
-        lis[selectedIndex].querySelector('a').click();
+    if (e.key === 'Enter' && !e.shiftKey) {
+      lis[selectedIndex].querySelector('a').click();
+    } else if (e.key === 'Enter' && e.shiftKey) {
+      const shiftClick = new MouseEvent('click', {ctrlKey: true});
+      lis[selectedIndex].querySelector('a').dispatchEvent(shiftClick);
     } else if (e.key === 'ArrowUp') {
-        selectedIndex = (selectedIndex-1 > 0)? selectedIndex-1: 0;
-        console.debug('selectedIndex = ', selectedIndex);
+      selectedIndex = (selectedIndex-1 > 0)? selectedIndex-1: 0;
+      console.debug('selectedIndex = ', selectedIndex);
     } else if (e.key === 'ArrowDown') {
       selectedIndex = (selectedIndex+1 < visibleLis.length-1)? selectedIndex+1: visibleLis.length-1;
       console.debug('selectedIndex = ', selectedIndex);
