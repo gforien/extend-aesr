@@ -174,7 +174,7 @@ function setupRoleFilter() {
   let AWSR_firstAnchor = null;
   roleFilter.onkeyup = function(e) {
     const words = this.value.toLowerCase().split(' ');
-    if (e.keyCode === 13) {
+    if (e.key === 'Enter') {
       if (AWSR_firstAnchor) {
         AWSR_firstAnchor.click()
       }
@@ -191,7 +191,7 @@ function setupRoleFilter() {
       });
 
       if (firstHitLi) {
-        firstHitLi.style.background = '#f0f9ff';
+        // firstHitLi.style.background = '#f0f9ff';
         AWSR_firstAnchor = firstHitLi.querySelector('a');
       } else {
         AWSR_firstAnchor = null;
