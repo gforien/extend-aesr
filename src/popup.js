@@ -210,6 +210,7 @@ function setupRoleFilter() {
 
 function sendSwitchRole(tabId, data) {
   chrome.tabs.query({ currentWindow: true }, (tabs) => {
+    // TODO: define a function isAwsTab which can be used in several places
     tabs = tabs.filter(t => t.url.includes('.aws.amazon.com') && t.id != tabId)
     // TODO: use a Promise for this, after upgrading to MV3
     tabs.forEach(t => {chrome.tabs.remove(t.id)});
