@@ -69,7 +69,7 @@ a:hover {
   text-decoration: none;
 }
 #roleList li a > *, #serviceList li a > * {
-  vertical-align: top;
+  vertical-align: middle;
 }
 .headSquare {
   background-size: contain;
@@ -77,6 +77,11 @@ a:hover {
   margin: 5px 8px 5px 5px;
   width: 20px;
   height: 20px;
+}
+.aws {
+  margin: 5px 8px 5px 5px;
+  width: 25px;
+  height: 25px;
 }
 .suffixAccountId {
   color: #666;
@@ -108,54 +113,18 @@ a:hover {
       <ul id="roleList">
       </ul>
       <ul id="serviceList" style="display: none">
-        <li>
-          <a href="#" serviceName="/iamv2/home"><span class="headSquare" style="background-color: rgb(255, 0, 0);"></span>
-          IAM</a>
-        </li>
-        <li>
-          <a href="#" serviceName="/kms/home"><span class="headSquare" style="background-color: rgb(255, 0, 0);"></span>
-          KMS</a>
-        </li>
-        <li>
-          <a href="#" serviceName="/ec2/v2/home"><span class="headSquare" style="background-color: rgb(255, 153, 0);"></span>
-          EC2</a>
-        </li>
-        <li>
-          <a href="#" serviceName="/ecr/home"><span class="headSquare" style="background-color: rgb(255, 153, 0);"></span>
-          ECR</a>
-        </li>
-        <li>
-          <a href="#" serviceName="/eks/home"><span class="headSquare" style="background-color: rgb(255, 153, 0);"></span>
-          EKS</a>
-        </li>
-        <li>
-          <a href="#" serviceName="/rds/home"><span class="headSquare" style="background-color: rgb(0, 13, 255);"></span>
-          RDS</a>
-        </li>
-        <li>
-          <a href="#" serviceName="/s3/buckets"><span class="headSquare" style="background-color: rgb(3, 166, 0);"></span>
-          S3</a>
-        </li>
-        <li>
-          <a href="#" serviceName="/cost-management/home"><span class="headSquare" style="background-color: rgb(3, 166, 0);"></span>
-          Cost Explorer</a>
-        </li>
-        <li>
-          <a href="#" serviceName="/athena/home"><span class="headSquare" style="background-color: rgb(83, 0, 166);"></span>
-          Athena</a>
-        </li>
-        <li>
-          <a href="#" serviceName="/support/home"><span class="headSquare" style="background-color: rgb(0, 13, 255);"></span>
-          Support</a>
-        </li>
-        <li>
-          <a href="#" serviceName="/vpc/home"><span class="headSquare" style="background-color: rgb(83, 0, 166);"></span>
-          VPC</a>
-        </li>
-        <li>
-          <a href="#" serviceName="/dynamodbv2/home"><span class="headSquare" style="background-color: rgb(0, 13, 255);"></span>
-          DynamoDB</a>
-        </li>
+        <li><a href="#" serviceName="/iamv2/home">          <img class="aws" src="icons/aws/IAM_64.svg"/>IAM</a></li>
+        <li><a href="#" serviceName="/kms/home">            <img class="aws" src="icons/aws/KMS_64.svg"/>KMS</a></li>
+        <li><a href="#" serviceName="/ec2/v2/home">         <img class="aws" src="icons/aws/EC2_64.svg"/>EC2</a></li>
+        <li><a href="#" serviceName="/ecr/home">            <img class="aws" src="icons/aws/ECR_64.svg"/>ECR</a></li>
+        <li><a href="#" serviceName="/eks/home">            <img class="aws" src="icons/aws/EKS_64.svg"/>EKS</a></li>
+        <li><a href="#" serviceName="/dynamodbv2/home">     <img class="aws" src="icons/aws/DynamoDB_64.svg"/>DynamoDB</a></li>
+        <li><a href="#" serviceName="/rds/home">            <img class="aws" src="icons/aws/RDS_64.svg"/>RDS</a></li>
+        <li><a href="#" serviceName="/support/home">        <img class="aws" src="icons/aws/Support_64.svg"/>Support</a></li>
+        <li><a href="#" serviceName="/s3/buckets">          <img class="aws" src="icons/aws/S3_64.svg"/>S3</a></li>
+        <li><a href="#" serviceName="/cost-management/home"><img class="aws" src="icons/aws/Cost-Explorer_64.svg"/>Cost Explorer</a></li>
+        <li><a href="#" serviceName="/athena/home">         <img class="aws" src="icons/aws/Athena_64.svg"/>Athena</a></li>
+        <li><a href="#" serviceName="/vpc/home">            <img class="aws" src="icons/aws/VPC_64.svg"/>VPC</a></li>
       </ul>
     </div>
     <div id="noMain" style="display: none;">
