@@ -100,14 +100,17 @@ function main() {
           }
         })
       } else {
-        const p = noMain.querySelector('p');
-        p.textContent = "You'll see the role list here when the current tab is AWS Management Console page.";
-        p.style.color = '#666';
-        noMain.style.display = 'block';
+        chrome.tabs.query({ currentWindow: true }, (tabs) => {
+          // If there is one/several AWS tabs, go to the last one
+          // tabs = tabs.filter(t => t.url.includes('.aws.amazon.com') && t.id != tab.id)
+          // if (tabs) {
+          //   chrome.tabs.update(tabs[tabs.length-1].id, { active: true })
+          // }
+          // Else, open a new AWS tab with default region
+          let consoleURL = "https://us-east-1.console.aws.amazon.com/console/home?region=us-east-1";
+          chrome.tabs.create({ url: consoleURL });
+        });
 
-        // automatically open AWS Console with default region
-        let consoleURL = "https://us-east-1.console.aws.amazon.com/console/home?region=us-east-1";
-        chrome.tabs.create({ url: consoleURL });
       }
     })
 }
