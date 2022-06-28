@@ -80,7 +80,7 @@ New user flow proposition
 ```mermaid
 graph TD
     A(Open extension) --> B(AWS Console is not open)
-    B --> I(Reload)
+    B --> I(Open / reload AWS Console)
 
     A(Open extension) --> C(Get user info fails)
     C --> I
