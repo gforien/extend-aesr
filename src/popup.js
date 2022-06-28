@@ -134,7 +134,7 @@ function loadFormList(curURL, userInfo, tabId) {
     const profiles = dps.profilesFromDataSet(data);
     const profileSet = createProfileSet(profiles, userInfo, { showOnlyMatchingRoles });
     renderRoleList(profileSet.destProfiles, tabId, curURL, { hidesAccountId, signinEndpointInHere });
-    setupRoleFilter();
+    setupRoleFilter("#roleList");
   });
 }
 
@@ -160,6 +160,9 @@ function switchServiceAndRole(tabId, data) {
   document.getElementById('roleList').style.display = 'none';
   document.getElementById('serviceList').style.display = 'block';
 
+  // redefine filter
+  setupRoleFilter("#serviceList");
+
   // overload the callback
   serviceList = document.querySelectorAll('a[serviceName]');
   serviceList.forEach(element => {
@@ -173,9 +176,9 @@ function switchServiceAndRole(tabId, data) {
   });
 }
 
-function setupRoleFilter() {
+function setupRoleFilter(listSelector) {
   const roleFilter = document.getElementById('roleFilter');
-  const lis = Array.from(document.querySelectorAll('#roleList > li'));
+  const lis = Array.from(document.querySelectorAll(`${listSelector} > li`));
   lis.forEach(e => e.style.display = 'block');
 
   let selectedIndex = 0;
