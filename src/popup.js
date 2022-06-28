@@ -119,21 +119,22 @@ function loadFormList(curURL, userInfo, tabId) {
   const storageRepo = new SyncStorageRepository(chrome || browser)
   storageRepo.get(['hidesAccountId', 'showOnlyMatchingRoles', 'configStorageArea', 'signinEndpointInHere'])
   .then(data => {
+    const configStorageArea = data.configStorageArea || 'sync';
+    
+    return new StorageRepository(chrome || browser, configStorageArea)
+    .get(['profiles', 'profiles_1', 'profiles_2', 'profiles_3', 'profiles_4'])
+  })
+  .then(data => {
+    if (!data.profiles) throw new Error('Error: data.profiles should be defined');
+    
     const hidesAccountId = data.hidesAccountId || false;
     const showOnlyMatchingRoles = data.showOnlyMatchingRoles || false;
-    const configStorageArea = data.configStorageArea || 'sync';
     const signinEndpointInHere = data.signinEndpointInHere || false;
-
-    new StorageRepository(chrome || browser, configStorageArea).get(['profiles', 'profiles_1', 'profiles_2', 'profiles_3', 'profiles_4'])
-    .then(data => {
-      if (data.profiles) {
-        const dps = new DataProfilesSplitter();
-        const profiles = dps.profilesFromDataSet(data);
-        const profileSet = createProfileSet(profiles, userInfo, { showOnlyMatchingRoles });
-        renderRoleList(profileSet.destProfiles, tabId, curURL, { hidesAccountId, signinEndpointInHere });
-        setupRoleFilter();
-      }
-    })
+    const dps = new DataProfilesSplitter();
+    const profiles = dps.profilesFromDataSet(data);
+    const profileSet = createProfileSet(profiles, userInfo, { showOnlyMatchingRoles });
+    renderRoleList(profileSet.destProfiles, tabId, curURL, { hidesAccountId, signinEndpointInHere });
+    setupRoleFilter();
   });
 }
 
